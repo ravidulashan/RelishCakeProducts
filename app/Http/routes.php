@@ -86,7 +86,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/logout', 'Auth\AuthController@getLogout');
 
-    Route::get('/{cake_type}','');
+    Route::get('/cakedesign/{cake_type}/{anniv?}','CakeRequestController@showcake');
 
     Route::get('/test', function () {
         $category = Category::where('seperator','=',1)->get();

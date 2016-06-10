@@ -82,10 +82,10 @@
                             <li><a href="/" class="@yield('home_active')">Home</a></li>
                             <li class="dropdown"><a href="#">Cake<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Birthday Cake</a></li>
-                                    <li><a href="product-details.html">Wedding/Anniversary Cake</a></li>
-                                    <li><a href="checkout.html">Cupcake</a></li>
-                                    <li><a href="cart.html">Custom Cake</a></li>
+                                    <li><a href="/cakedesign/Birthday cakes">Birthday Cake</a></li>
+                                    <li><a href="/cakedesign/Wedding%2FAnniversary cakes">Wedding/Anniversary Cake</a></li>
+                                    <li><a href="/cakedesign/Cup cakes">Cupcake</a></li>
+                                    <li><a href="/cakedesign/Custom cakes">Custom Cake</a></li>
 
                                 </ul>
                             </li>

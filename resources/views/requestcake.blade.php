@@ -25,7 +25,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading" style="background-color:#FC9A11">
                                             <h4 class="panel-title"><a
-                                                        href="/onlinemenu/{{$cat->type}}">{{$cat->type}}</a>
+                                                        href="/cakedesign/{{$cat->type}}">{{$cat->type}}</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -33,7 +33,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             <h4 class="panel-title"><a
-                                                        href="/onlinemenu/{{$cat->type}}">{{$cat->type}}</a>
+                                                        href="/cakedesign/{{$cat->type}}">{{$cat->type}}</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -41,19 +41,7 @@
                             @endforeach
 
                         </div><!--/category-productsr-->
-                        <div class="wow fadeInDown" data-wow-duration="1000ms"
-                             data-wow-delay="600ms">
-                            <div ><!--price-range-->
-                                <h2>Price Range</h2>
-
-                                <div class="well">
-                                    <input type="text" class="range-slider" value="500">
-
-
-                                    <b>Rs. 0</b> <b class="pull-right">Rs. 4000</b>
-                                </div>
-                            </div><!--/price-range-->
-                        </div>
+                       
 
                     </div>
                 </div>
