@@ -41,7 +41,7 @@
                     <div class="signup-form"><!--sign up form-->
                         <h2>New User Signup!</h2>
 
-                        <form action="POST" id="signupForm">
+                        <form method="POST" id="signupForm" action="{{ url('/signup') }}">
                             {{csrf_field()}}
 
                             <input type="text" id=firstname name="firstname" placeholder="First Name"/>
@@ -60,10 +60,10 @@
                             <div style="display:block;margin-bottom: 10px">
                                 <select style="display:inline;width:20%;"
                                         placeholder="days"
-                                        id="days" name="days"></select>
+                                        id="months" name="days"></select>
                                 <select style="display:inline;width:20%;" id="months" name="months"></select>
-                                <select style="display:inline;width:20%;" id="years" name="years"></select>
-                                <label for="months" id="labelmonth" class="error"></label>
+                                <select style="display:inline;width:20%;" id="months" name="years"></select>
+                                <label for="months" style="display:block;" class="error"></label>
                             </div>
                             <input type="text" id="telephone" name="telephone" placeholder="Mobile number"/>
                             <input type="email" id="email" name="email" placeholder="Email Address"/>
@@ -83,19 +83,19 @@
 
         $(function () {
 
-            $('#years').append($('<option disabled selected/>').val("").html("Year"));
+            $('[name="years"]').append($('<option disabled selected/>').val("").html("Year"));
             for (i = new Date().getFullYear(); i > 1960; i--) {
-                $('#years').append($('<option />').val(i).html(i));
+                $('[name="years"]').append($('<option />').val(i).html(i));
             }
             //    $('#months').append(<option value="" disabled selected>Select your option</option>)
-            $('#months').append($('<option disabled selected/>').val("").html("Month"));
+            $('[name="months"]').append($('<option disabled selected/>').val("").html("Month"));
             for (i = 1; i < 13; i++) {
 
-                $('#months').append($('<option />').val(i).html(i));
+                $('[name="months"]').append($('<option />').val(i).html(i));
             }
             updateNumberOfDays();
 
-            $('#years, #months').change(function () {
+            $('[name="years"], [name="months"]').change(function () {
 
                 updateNumberOfDays();
 
@@ -104,13 +104,13 @@
         });
 
         function updateNumberOfDays() {
-            $('#days').html('');
-            month = $('#months').val();
-            year = $('#years').val();
+            $('[name="days"]').html('');
+            month = $('[name="months"]').val();
+            year = $('[name="years"]').val();
             days = daysInMonth(month, year);
-            $('#days').append($('<option disabled selected/>').val("").html("Day"));
+            $('[name="days"]').append($('<option disabled selected/>').val("").html("Day"));
             for (i = 1; i < days + 1; i++) {
-                $('#days').append($('<option />').val(i).html(i));
+                $('[name="days"]').append($('<option />').val(i).html(i));
             }
 
         }
@@ -120,22 +120,57 @@
         }
 
         $('#signupForm').validate({
-            rules:{
+            rules: {
                 firstname: "required",
                 lastname: "required",
                 gender: "required",
                 days: "required",
                 months: "required",
                 years: "required",
+                telephone: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    remote: {
+                        url: '/check/',
+                        type: "get"
+                    }
+
+                },
+                password: {
+                    required: true,
+                    minlength: 6
+                },
+                confirm_password: {
+                    required: true,
+                    equalTo: $('#signupForm').find("#password"),
+                    minlength: 6
+
+                }
+            },
+            messages: {
+                firstname:"Please enter your First Name",
+                lastname: "Please enter your Last Name",
+                gender:"Please enter your Gender",
+                days:"PLease enter your Birth day",
+                months:"PLease enter your Birth day",
+                years:"PLease enter your Birth day",
+                telephone:{
+                    required:"PLease enter your mobile phone number",
+                    minlength:"PLease enter a valid telephone number"
+                },
+                email:{
+                  remote:"E-mail is already occupied"
+                }
             }
 
 
         });
-
-        $('#signup').on('click',function(){
-            alert($('#days-error').text());
-        });
-
 
 
     </script>

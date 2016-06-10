@@ -24,6 +24,8 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/productdetails/addtocart', 'ProductDetailController@addtoCart');
 
+        Route::get('/productdetails/addtocart/{id}/{qty}/{wording?}', 'ProductDetailController@addtoCartWithId');
+
     });
 
     Route::get('/', function () {
@@ -43,10 +45,14 @@ Route::group(['middleware' => ['web']], function () {
     });
 
 
+    Route::get('/check/', 'Auth\AuthController@checkAvailability');
 
     Route::get('/onlinemenu/{category}', 'OnlineMenuController@viewCategorizedCakes');
 
     Route::get('/onlinemenu/{category}/{id}', 'ProductDetailController@viewCakeDetails');
+
+    Route::post('/signup', 'Auth\AuthController@registerUser');
+    Route::get('/signup', 'Auth\AuthController@registerUser');
 
     Route::get('/contact', function () {
         return view('contactus');
@@ -57,9 +63,9 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::get('/login', function () {
-        if(Auth::check()){
+        if (Auth::check()) {
             return redirect('/');
-        }else{
+        } else {
             return view('login');
         }
 
@@ -77,10 +83,14 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/login', 'Auth\AuthController@authenticate');
 
-    Route::get('/logout', 'Auth\AuthController@logout');
+
+    Route::get('/logout', 'Auth\AuthController@getLogout');
+
+    Route::get('/{cake_type}','');
 
     Route::get('/test', function () {
-
+        $category = Category::where('seperator','=',1)->get();
+        echo $category;
         /*$cake_desc = Auth::user()->user_type;
         echo $cake_desc;*/
         /*   $cartitem=CartItem::with('cakeDesc')->find(23);

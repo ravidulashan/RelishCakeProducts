@@ -37,6 +37,12 @@ class AuthController extends Controller
      *
      * @return void
      */
+
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'getLogout']);
+    }
+
     public function authenticate(Request $req)
     {
         // Recieve the input from request object and check whether the input is in database
@@ -52,6 +58,65 @@ class AuthController extends Controller
             return redirect('/login')->with('error', 'Email address or password is/are invalid. Try again!');
         }
     }
+
+
+    public function checkAvailability(Request $request)
+    {
+
+        $email = $request->input('email');
+        if ($user = User::where('email', '=', $email)->first()) {
+            return json_encode(false);
+        }
+        return json_encode(true);
+    }
+
+
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
+
+    public function registerUser(Request $request)
+    {
+
+         $fname = $request->input('firstname');
+         $lname = $request->input('lastname');
+         $gender = $request->input('gender');
+         $days = $request->input('days');
+         $months = $request->input('months');
+         $years = $request->input('years');
+         $tel = $request->input('telephone');
+         $email = $request->input('email');
+         $password = $request->input('password');
+
+         $user = new User();
+         $user->first_name = $fname;
+         $user->last_name = $lname;
+         $user->email = $email;
+         $user->password = bcrypt($password);
+         $user->confirmed = 0;
+         $user->confirmation_code = uniqid() . time();
+         $user->gender = $gender;
+         $user->birthday = $years . '-' . $months . '-' . $days;
+         $user->tel_no = $tel;
+         $user->user_type = 1;
+         $user->reg_date = date('Y-m-d');
+         $user->save();
+
+         if (Auth::attempt(['email' => $email, 'password' => $password])) {
+             Auth::login(Auth::user());
+             return redirect()->intended('/');
+         } else {
+             // On failure redirect to the login page
+             $request->session()->put('error', 'Critical error, please contact the admin. Thank you!');
+             return redirect('/login');
+         }
+    }
+
 
 
     public function logout()

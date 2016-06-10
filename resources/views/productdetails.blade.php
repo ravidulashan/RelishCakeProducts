@@ -158,7 +158,7 @@
                     url: "/productdetails/addtocart",
                     async: true,
                     cache: false,
-                    data: {CakeDescId: cake_desc_id, Quantity: qty, Wording: wording},
+                    data: {CakeDescId: cake_desc_id, Quantity: qty, Wording: wording,Test:0},
 
                     success: function (data) {
 
@@ -186,8 +186,8 @@
 
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        window.location.replace('/productdetails/addtocart?CakeDescId=19&Quantity=1&Wording=');
-                        //                    setTimeout(waitForMsg, 15000);
+                        window.location.replace('/productdetails/addtocart/'+cake_desc_id+'/'+qty+'/'+wording);
+                        //
                     }
                 });
 

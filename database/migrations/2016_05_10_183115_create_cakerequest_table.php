@@ -24,7 +24,7 @@ class CreateCakerequestTable extends Migration
         });
 
         Schema::table('cake_request',function($table){
-            $table->foreign('user_id')->references('user_id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('request_quantity_id')->references('request_quantity_id')->on('request_quantity');
         });
     }

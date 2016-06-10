@@ -13,7 +13,7 @@ class CakeDescTableSeeder extends Seeder
     public function run()
     {
         $array = array("Piece","1 kg", "600 g", "2 kg", "2 kg g", "800 g", "1 kg", "2.5 kg", "2 kg");
-        $price_array = array(1250, 500, 2000, 750, 1400,500, 2000,750);
+        $price_array = array(500, 1000, 800, 2000, 1400,500, 2000,750);
         $served_amount=array("1","10","5","20");
         for ($i = 0; $i < 4; ++$i) {
 

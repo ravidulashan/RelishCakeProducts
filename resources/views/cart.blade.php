@@ -40,7 +40,11 @@
                             </td>
                             <td class="cart_description">
                                 <h4><a href="">{{$cakedesc[0]['cake']['name']}}</a></h4>
-                                    <p>{{$cakedesc[0]['quantity']}}</p>
+                                    <p>Quantity :{{$cakedesc[0]['quantity']}}</p>
+                                @if($cartitem->wording!=null)
+                                    <p>Wording :{{$cartitem->wording}}</p>
+                                @endif
+
 
                             </td>
                             <td class="cart_price">

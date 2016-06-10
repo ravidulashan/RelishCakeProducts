@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="{{asset('images/home/logo.png')}}" alt=""
+                        <a href="/"><img src="{{asset('images/home/logo.png')}}" alt=""
                                                   style="height:40px;width: 140px"/></a>
                     </div>
                 </div>

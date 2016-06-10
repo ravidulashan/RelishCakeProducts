@@ -122,7 +122,7 @@
 
                                                 <h2>{{$cakes[0]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[0]->type}}/{{$cakes[0]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 
@@ -138,7 +138,7 @@
 
                                                 <h2>{{$cakes[1]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[1]->type}}/{{$cakes[1]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 
@@ -154,7 +154,7 @@
 
                                                 <h2>{{$cakes[2]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[2]->type}}/{{$cakes[2]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 
@@ -170,7 +170,7 @@
 
                                                 <h2>{{$cakes[3]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[3]->type}}/{{$cakes[3]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 
@@ -188,7 +188,7 @@
 
                                                 <h2>{{$cakes[4]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[4]->type}}/{{$cakes[4]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 
@@ -203,7 +203,7 @@
 
                                                 <h2>{{$cakes[5]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[5]->type}}/{{$cakes[5]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 
@@ -218,7 +218,7 @@
 
                                                 <h2>{{$cakes[6]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[6]->type}}/{{$cakes[6]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 
@@ -233,7 +233,7 @@
 
                                                 <h2>{{$cakes[7]->name}}</h2>
 
-                                                <a href="#" class="btn btn-default add-to-cart"><i
+                                                <a href="/onlinemenu/{{$cakes[7]->type}}/{{$cakes[7]->cake_id}}" class="btn btn-default add-to-cart"><i
                                                             class="fa fa-list-alt"></i>Details and Pricing</a>
                                             </div>
 

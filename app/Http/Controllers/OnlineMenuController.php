@@ -36,7 +36,7 @@ class OnlineMenuController extends Controller
             ->take(9)
             ->get();
         //return all categories of cakes
-        $category = Category::all();
+        $category = Category::where('seperator','=',1)->get();
 
         return view('shop', ['cakes' => $cakes, 'category' => $category, 'newcakes' => $newcakes]);
     }
@@ -46,7 +46,7 @@ class OnlineMenuController extends Controller
 
         //return cakes with the given category
         $cakes = Cake::where('type', '=', $currentcategory)->paginate(12);
-        $category = Category::all();
+        $category = $category = Category::where('seperator','=',1)->get();;
         return view('categorizedcakes',['currentcategory'=>$currentcategory,'cakes'=>$cakes,'category'=>$category]);
 
     }
