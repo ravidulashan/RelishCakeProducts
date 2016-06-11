@@ -211,7 +211,7 @@
                 data: {LowValue: low, HighValue: high},
                 timeout: 50000,
                 success: function (data) {
-
+                    alert(data);
                     $('#masterdiv').html('');
                     $('#masterdiv').append('<h2 class="title text-center">Featured Cakes</h2>');
 

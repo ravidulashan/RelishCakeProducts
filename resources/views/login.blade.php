@@ -59,7 +59,7 @@
 
                             <div style="display:block;margin-bottom: 10px">
                                 <select style="display:inline;width:20%;"
-                                        placeholder="days"
+
                                         id="months" name="days"></select>
                                 <select style="display:inline;width:20%;" id="months" name="months"></select>
                                 <select style="display:inline;width:20%;" id="months" name="years"></select>

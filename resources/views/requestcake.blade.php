@@ -41,8 +41,23 @@
                             @endforeach
 
                         </div><!--/category-productsr-->
-                       
 
+                        <div class="wow fadeInDown" data-wow-duration="1000ms"
+                             data-wow-delay="600ms">
+
+                            <div><!--price-range  class="price-range "-->
+                                <h2>Request Cake Design</h2>
+                                <p class="lead">You can request a cake with your own design in here</p>
+                            <!--    <div class="well "> -->
+                                        <div style="padding-left: 40px">
+                                            <a  href="/requestquote/{{$currentcategory}}"
+                                                class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-list-alt"></i>Request for quote</a>
+                                        </div>
+
+                           <!--     </div>-->
+                            </div><!--/price-range-->
+                        </div>
                     </div>
                 </div>
 
@@ -59,16 +74,18 @@
                                             <h2>{{$cake->name}}</h2>
 
                                             <p>{{$cake->type}}</p>
-                                            <a href="/onlinemenu/{{$cake->type}}/{{$cake->cake_id}}" class="btn btn-default add-to-cart"><i
-                                                        class="fa fa-list-alt"></i>Details and Pricing</a>
+                                            <a href="/requestquote/{{$cake->type}}/{{$cake->cake_id}}"
+                                               class="btn btn-default add-to-cart"><i
+                                                        class="fa fa-list-alt"></i>Request for quote</a>
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
                                                 <h2>{{$cake->name}}</h2>
 
                                                 <p>{{$cake->type}}</p>
-                                                <a href="/onlinemenu/{{$cake->type}}/{{$cake->cake_id}}" class="btn btn-default add-to-cart"><i
-                                                            class="fa fa-list-alt"></i>Details and Pricing</a>
+                                                <a href="/requestquote/{{$cake->type}}/{{$cake->cake_id}}"
+                                                   class="btn btn-default add-to-cart"><i
+                                                            class="fa fa-list-alt"></i>Request for quote</a>
                                             </div>
                                         </div>
                                         @if(date('Y-m-d', $cake->created_at->timestamp)<=date('Y-m-d') && date('Y-m-d', $cake->created_at->timestamp)>=date('Y-m-d', strtotime('first day of last month')))
@@ -120,81 +137,5 @@
             </div>
         </div>
     </section>
-    <script src="{{asset('js/jquery.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('js/jquery.scrollUp.min.js')}}"></script>
 
-    <script src="{{asset('js/jquery.prettyPhoto.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
-    <script src="{{asset('js/wow.min.js')}}"></script>
-@endsection
-@section('scripts')
-
-    <script>
-
-        function setPriceRange(low, high) {
-            $.ajax({
-                type: "GET",
-                url: "/onlinecake/customizedpricerange",
-                async: true,
-                cache: false,
-                data: {LowValue: low, HighValue: high,Category:'{{$currentcategory}}'},
-                timeout: 50000,
-                success: function (data) {
-
-                    $('#masterdiv').html('');
-                    $('#masterdiv').append('<h2 class="title text-center">Featured Cakes</h2>');
-                    {{URL::asset('images/home/new.png')}}
-                                        for (var key in data.data) {
-                        // alert(data.data[key].img_url);   '+data.data[key].img_url+'
-                        $('#masterdiv').append(
-
-                                ' <div class="col-sm-4 ">' +
-                                ' <div class="product-image-wrapper">' +
-                                ' <div class="single-products">' +
-                                ' <div class="productinfo text-center">' +
-                                ' <img src="data.data[key].img_url" alt=""/>' +
-                                '<h2>'+ data.data[key].name +'</h2>' +
-                                '<p>'+data.data[key].type+' </p>' +
-                                ' <a href=\"/onlinemenu/'+data.data[key].type+'/'+data.data[key].cake_id+'\"'+
-                                'class="btn btn-default add-to-cart"><i' +
-                                ' class="fa fa-list-alt"></i>Details and Pricing</a>' +
-                                '</div>' +
-                                '<div class="product-overlay">' +
-                                '<div class="overlay-content">' +
-                                ' <h2>'+ data.data[key].name+'</h2>' +
-                                '<p>'+data.data[key].type+'</p>' +
-                                ' <a href=\"/onlinemenu/'+data.data[key].type+'/'+data.data[key].cake_id+'\"'+
-                                'class="btn btn-default add-to-cart"><i' +
-                                'class="fa fa-list-alt"></i>Details and Pricing</a>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>'
-
-                        ) ;
-                    }
-
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-//                    setTimeout(waitForMsg, 15000);
-                }
-            });
-        }
-
-        $(function () {
-            $('.range-slider').jRange({
-                from: 0,
-                to: 4000,
-                step: 50,
-
-                format: '%s',
-                width: 200,
-                showLabels: true,
-                isRange: true
-            });
-
-        });
-    </script>
 @endsection

@@ -14,6 +14,7 @@
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link href="{{asset('css/responsive.css')}}" rel="stylesheet">
     <link href="{{asset('css/jquery.range.css')}}" rel="stylesheet">
+    <link href="{{asset('css/datepicker.css')}}" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="{{asset('js/html5shiv.js')}}"></script>
@@ -83,9 +84,11 @@
                             <li class="dropdown"><a href="#">Cake<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="/cakedesign/Birthday cakes">Birthday Cake</a></li>
-                                    <li><a href="/cakedesign/Wedding%2FAnniversary cakes">Wedding/Anniversary Cake</a></li>
                                     <li><a href="/cakedesign/Cup cakes">Cupcake</a></li>
                                     <li><a href="/cakedesign/Custom cakes">Custom Cake</a></li>
+                                    <li><a href="/cakedesign/Wedding cakes">Wedding Cake</a></li>
+
+
 
                                 </ul>
                             </li>

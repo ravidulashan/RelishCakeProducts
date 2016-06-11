@@ -52,6 +52,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/onlinemenu/{category}/{id}', 'ProductDetailController@viewCakeDetails');
 
     Route::post('/signup', 'Auth\AuthController@registerUser');
+
     Route::get('/signup', 'Auth\AuthController@registerUser');
 
     Route::get('/contact', function () {
@@ -86,11 +87,23 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/logout', 'Auth\AuthController@getLogout');
 
-    Route::get('/cakedesign/{cake_type}/{anniv?}','CakeRequestController@showcake');
+    Route::get('/cakedesign/{cake_type}','CakeRequestController@showcake');
+
+    Route::get('/cakerequest/servedamount','CakeRequestController@getServedamount');
+
+    Route::get('/requestquote/{cake_type}/{cake_id?}','CakeRequestController@requestQuote');
 
     Route::get('/test', function () {
-        $category = Category::where('seperator','=',1)->get();
-        echo $category;
+
+
+        //echo $cakess;
+      /*  $served_amount=\App\RequestQuantity::where("type","=","Birthday cakes")->get();
+        foreach($served_amount as $serve){
+            echo $serve->served_amount;
+       }*/
+
+        /*$category = Category::where('seperator','=',1)->get();
+        echo $category;*/
         /*$cake_desc = Auth::user()->user_type;
         echo $cake_desc;*/
         /*   $cartitem=CartItem::with('cakeDesc')->find(23);

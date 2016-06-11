@@ -17,27 +17,6 @@
                     <div class="left-sidebar">
                         <h2>Category</h2>
 
-                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-
-                            <!-- Identify your business so that you can collect the payments. -->
-                            <input type="hidden" name="business" value="herschelgomez@xyzzyu.com">
-
-                            <!-- Specify a Buy Now button. -->
-                            <input type="hidden" name="cmd" value="_xclick">
-
-                            <!-- Specify details about the item that buyers will purchase. -->
-                            <input type="hidden" name="item_name" value="Hot Sauce-12oz Bottle">
-                            <input type="hidden" name="amount" value="5.95">
-                            <input type="hidden" name="currency_code" value="USD">
-
-                            <!-- Display the payment button. -->
-                            <input type="image" name="submit" border="0"
-                                   src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-                                   alt="PayPal - The safer, easier way to pay online">
-                            <img alt="" border="0" width="1" height="1"
-                                 src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
-
-                        </form>
 
                         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
                             @foreach($categories as $category)
@@ -56,7 +35,7 @@
 
                 <div class="col-sm-9 padding-right">
                     <div class="product-details"><!--product-details-->
-                        <div class="col-sm-5">
+                        <div class="col-sm-5 col-md-4">
                             <div class="view-product">
                                 <img src="{{URL::asset($cake->img_url)}}" alt=""/>
 
@@ -77,7 +56,7 @@
 
                                 <div class="row" style="position: relative;margin-top: 20px">
 
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-10">
                                         <p>Select size :</p>
                                         <table id="product-table" class="table">
                                             @foreach($cake->cakedesc as $cake_desc)
@@ -158,7 +137,7 @@
                     url: "/productdetails/addtocart",
                     async: true,
                     cache: false,
-                    data: {CakeDescId: cake_desc_id, Quantity: qty, Wording: wording,Test:0},
+                    data: {CakeDescId: cake_desc_id, Quantity: qty, Wording: wording},
 
                     success: function (data) {
 
