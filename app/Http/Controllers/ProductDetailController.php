@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Cake;
 use App\CakeDesc;
+use App\CakeRequest;
 use App\Cart;
 use App\CartItem;
 use App\Category;
@@ -44,7 +45,7 @@ class ProductDetailController extends Controller
     {
 
 
-        $cartitems = Cart::find(Auth::User()->id)->where("status", '=', 1)->first()->cartItem;
+        $cartitems = \App\Cart::where('user_id','=',Auth::User()->id)->where("status", '=', 1)->first()->cartItem;
 
         return view('/cart', ['cartItems' => $cartitems]);
     }
@@ -107,6 +108,42 @@ class ProductDetailController extends Controller
             $cartitem->price = ((int)$qty) * ($cake_desc->price);
             $cartitem->cake_desc_id = $cake_desc_id;
             $cart->cartitem()->save($cartitem);
+        }
+    }
+
+    public function viewOrders($order_type){
+
+        if($order_type=="onlineorders"){
+            if(($carts = \App\Cart::with('cartItem','user')->where("status", '=', 2)->get())==null){
+                $carts=null;
+            }
+            $cakerequests=null;
+        }else{
+            if(($cakerequests=CakeRequest::with('requestQuantity','user')->where('state','=',0)->paginate(1))==null){
+             $cakerequests=null;
+            }
+            $carts=null;
+        }
+        return view('orders',['currentcategory'=>$order_type,'carts'=>$carts,'cakerequests'=>$cakerequests]);
+    }
+
+
+    public function respondOrder(Request $request){
+
+        $requestid=$request->input('requestid');
+        $category=$request->input('category');
+
+        if($request->has('declinebtn')){
+            $cakerequest=CakeRequest::find($requestid);
+            $cakerequest->state=5;
+            $cakerequest->save();
+            return Redirect::to('/orders/'.$category);
+        }else{
+            $cakerequest=CakeRequest::find($requestid);
+            $cakerequest->state=2;
+            $cakerequest->save();
+            return Redirect::to('/orders/'.$category);
+
         }
     }
 }

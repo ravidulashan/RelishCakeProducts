@@ -12,7 +12,7 @@ class User extends Authenticatable
 
 
     public function session(){
-        return $this->hasMany("App\Session","user_id","user_id");
+        return $this->hasMany("App\Session");
     }
 
     public function cart(){
@@ -20,7 +20,7 @@ class User extends Authenticatable
     }
 
     public function cakeRequest(){
-        return $this->hasMany("App\CakeRequest","user_id","user_id");
+        return $this->hasMany("App\CakeRequest");
     }
 
 

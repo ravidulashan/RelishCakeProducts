@@ -3,6 +3,7 @@ use App\User;
 use App\Cake;
 use App\Category;
 use App\CartItem;
+use App\CakeRequest;
 use Carbon\Carbon;
 
 /*
@@ -44,6 +45,10 @@ Route::group(['middleware' => ['web']], function () {
         return view('index', ['query' => $query, 'cakes' => $cakes]);
     });
 
+
+    Route::get('/orders/{order_type}','ProductDetailController@viewOrders');
+
+    Route::post('/respondorder','ProductDetailController@respondOrder');
 
     Route::get('/check/', 'Auth\AuthController@checkAvailability');
 
@@ -99,8 +104,18 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/quoterequest/imagenotlogged','CakeRequestController@requestQuotenSub');
 
     Route::get('/test', function () {
+        $cartitems = \App\Cart::where('user_id','=',Auth::User()->id)->where("status", '=', 1)->first()->cartItem;
 
-        echo new Date();
+       /* $carts = \App\Cart::with('cartItem','user')->where("status", '=', 2)->get();
+        echo $carts->user()->first_name;*/
+       /* $carts = \App\Cart::with('cartItem')->where("status", '=', 2)->get();
+        foreach($carts as $cart){
+            foreach($cart->cartItem as $cartitem){
+                echo $cartitem->cake_desc_id;
+            }
+        }*/
+        //$reqcake=CakeRequest::with('requestQuantity','user')->where('state','=','0')->get()
+        //echo new Date();
         //echo $cakess;
       /*  $served_amount=\App\RequestQuantity::where("type","=","Birthday cakes")->get();
         foreach($served_amount as $serve){

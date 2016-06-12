@@ -43,7 +43,7 @@
                 <div class="col-sm-4">
                     <div class="logo pull-left">
                         <a href="/"><img src="{{asset('images/home/logo.png')}}" alt=""
-                                                  style="height:40px;width: 140px"/></a>
+                                         style="height:40px;width: 140px"/></a>
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -89,7 +89,6 @@
                                     <li><a href="/cakedesign/Wedding cakes">Wedding Cake</a></li>
 
 
-
                                 </ul>
                             </li>
                             <!--   <li class="dropdown"><a href="#">Online menu<i class="fa fa-angle-down"></i></a>
@@ -99,6 +98,16 @@
                                    </ul>
                                </li> -->
                             <li><a href="/onlinemenu" class="@yield('menu_active')">Online menu</a></li>
+                            @if(\Illuminate\Support\Facades\Auth::check())
+                                @if(\Illuminate\Support\Facades\Auth::User()->user_type==0)
+                                    <li class="dropdown"><a href="#">Orders<i class="fa fa-angle-down"></i></a>
+                                        <ul role="menu" class="sub-menu">
+                                            <li><a href="/orders/onlineorders">Online Orders</a></li>
+                                            <li><a href="/orders/cakerequestorders">Cake Request Orders</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            @endif
                             <li><a href="/aboutus" class="@yield('about_active')">About us</a></li>
                             <li><a href="/contact" class="@yield('contact_active')">Contact</a></li>
                         </ul>
