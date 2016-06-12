@@ -114,7 +114,7 @@ class ProductDetailController extends Controller
     public function viewOrders($order_type){
 
         if($order_type=="onlineorders"){
-            if(($carts = \App\Cart::with('cartItem','user')->where("status", '=', 2)->get())==null){
+            if(($carts = \App\Cart::with('cartItem','user')->where("status", '=', 2)->paginate(5))==null){
                 $carts=null;
             }
             $cakerequests=null;
@@ -138,12 +138,17 @@ class ProductDetailController extends Controller
             $cakerequest->state=5;
             $cakerequest->save();
             return Redirect::to('/orders/'.$category);
-        }else{
+        }else if($request->has('acceptbtn')){
             $cakerequest=CakeRequest::find($requestid);
             $cakerequest->state=2;
             $cakerequest->save();
             return Redirect::to('/orders/'.$category);
 
+        }else{
+            $cart=Cart::find($requestid);
+            $cart->status=3;
+            $cart->save();
+            return Redirect::to('/orders/'.$category);
         }
     }
 }

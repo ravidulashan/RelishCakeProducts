@@ -68,6 +68,10 @@ Route::group(['middleware' => ['web']], function () {
         return view('aboutus');
     });
 
+    Route::get('/reports',function(){
+       return view('analytics');
+    });
+
     Route::get('/login', function () {
         if (Auth::check()) {
             return redirect('/');
@@ -104,7 +108,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/quoterequest/imagenotlogged','CakeRequestController@requestQuotenSub');
 
     Route::get('/test', function () {
-        $cartitems = \App\Cart::where('user_id','=',Auth::User()->id)->where("status", '=', 1)->first()->cartItem;
+        $cakedesc = \App\CakeDesc::with('cake')->where('cake_desc_id', '=', 10)->get();
+        echo $cakedesc->cake->cake_id;
+//        $cartitems = \App\Cart::where('user_id','=',Auth::User()->id)->where("status", '=', 1)->first()->cartItem;
 
        /* $carts = \App\Cart::with('cartItem','user')->where("status", '=', 2)->get();
         echo $carts->user()->first_name;*/

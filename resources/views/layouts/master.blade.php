@@ -106,6 +106,7 @@
                                             <li><a href="/orders/cakerequestorders">Cake Request Orders</a></li>
                                         </ul>
                                     </li>
+                                    <li><a href="/reports" class="@yield('report_active')">Reports</a></li>
                                 @endif
                             @endif
                             <li><a href="/aboutus" class="@yield('about_active')">About us</a></li>
