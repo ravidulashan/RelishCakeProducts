@@ -10,8 +10,12 @@ namespace App\Http\Controllers;
 
 
 use App\Cake;
+use App\CakeRequest;
 use App\Category;
 use App\RequestQuantity;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class CakeRequestController extends Controller
@@ -53,6 +57,26 @@ class CakeRequestController extends Controller
         }
         //    $text=$text.'</select>';
         return response()->json(["served_amount"=>$text]);
+    }
+
+    public function requestQuoteSub(Request $request){
+
+        $img_url=$request->input('img_url');
+        $cake_type=$request->input('cake_type');
+        $request_quantity_id=$request->input('served_amount');
+        $req_date=$request->input('reqdate');
+
+        $newDate = date("Y-m-d", strtotime($req_date));
+
+        $request_cake=new CakeRequest();
+        $request_cake->img_url=$img_url;
+        $request_cake->req_date=$req_date;
+        $request_cake->request_date=Carbon::now()->format('Y-m-d');
+        $request_cake->state=0;
+        $request_cake->user_id=Auth::User()->id;
+        $request_cake->request_quantity_id=$request_quantity_id;
+    //    $request_cake->save();
+        return $req_date;
     }
 
 }

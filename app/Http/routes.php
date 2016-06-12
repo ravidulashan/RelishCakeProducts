@@ -93,9 +93,12 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/requestquote/{cake_type}/{cake_id?}','CakeRequestController@requestQuote');
 
+
+    Route::post('/quoterequest/imagelogged','CakeRequestController@requestQuoteSub');
+
     Route::get('/test', function () {
 
-
+        echo new Date();
         //echo $cakess;
       /*  $served_amount=\App\RequestQuantity::where("type","=","Birthday cakes")->get();
         foreach($served_amount as $serve){
