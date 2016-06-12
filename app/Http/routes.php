@@ -96,6 +96,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::post('/quoterequest/imagelogged','CakeRequestController@requestQuoteSub');
 
+    Route::post('/quoterequest/imagenotlogged','CakeRequestController@requestQuotenSub');
+
     Route::get('/test', function () {
 
         echo new Date();

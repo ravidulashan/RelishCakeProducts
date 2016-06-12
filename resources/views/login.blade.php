@@ -25,7 +25,7 @@
 								Keep me signed in
 
 							</span>
-                            @if(session('error'))
+                            @if(session()->has('error'))
                                 <p style="color: red;">
                                     {{ session('error') }}
                                 </p>

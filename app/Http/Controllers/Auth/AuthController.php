@@ -50,7 +50,7 @@ class AuthController extends Controller
         $password = $req->input('password');
 
 
-        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password,'user_type'=>1]) || Auth::attempt(['email' => $email, 'password' => $password,'user_type'=>0])) {
             Auth::login(Auth::user());
             return redirect()->intended('/');
         } else {

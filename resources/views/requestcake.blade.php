@@ -64,6 +64,11 @@
                 <div class="col-sm-9 padding-right wow fadeInDown">
                     <div class="features_items" id="masterdiv"><!--features_items-->
                         <h2 class="title text-center">{{$currentcategory}}</h2>
+                        @if($success==1)
+                            <div class="alert alert-success">
+                                Your request for a quote has been submitted successfully. We will contact you upon evaluating the details.
+                                </div>
+                            @endif
                         @foreach($cakes as $cake)
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">

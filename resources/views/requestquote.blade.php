@@ -60,7 +60,8 @@
 
                                             @if(\Illuminate\Support\Facades\Auth::check())
                                                 <div class="requestQuote"><!--sign up form-->
-                                                    <form method="POST" id="requestQuoteLoggedform" action="{{url('/quoterequest/imagelogged')}}">
+                                                    <form method="POST" id="requestQuoteLoggedform"
+                                                          action="{{url('/quoterequest/imagelogged')}}">
                                                         {{csrf_field()}}
                                                         <h2>Request Quote</h2>
                                                         <input type="hidden" value="{{$cake->img_url}}" name="img_url"
@@ -88,7 +89,8 @@
                                                 </div><!--/sign up form-->
                                             @else
                                                 <div class="requestQuote"><!--sign up form-->
-                                                    <form method="POST" id="requestQuoteform" action="#">
+                                                    <form method="POST" id="requestQuoteform"
+                                                          action="{{url('/quoterequest/imagenotlogged')}}">
                                                         {{csrf_field()}}
                                                         <h2>Request Quote</h2>
                                                         <input type="hidden" value="{{$cake->img_url}}" name="img_url"
@@ -138,78 +140,116 @@
 
                     </div>
                 @else
-                    <div class="col-sm-9 col-md-6 padding-right">
-                        <div class="requestQuote"><!--sign up form-->
-                            <form method="POST" id="signupForm" action="{{ url('/signup') }}"
-                                  style="padding-left: 200px">
-                                {{csrf_field()}}
-                                <h2>Request Quote</h2>
-                                <input type="text" id=firstname name="firstname"
-                                       placeholder="First Name"/>
-                                <input type="text" id=lastname name="lastname" placeholder="Last Name"/>
+                    <div class="col-sm-9  ">
+                        <div class="product-details"><!--product-details-->
+                            <div class="product-information"><!--/product-information-->
+                                <div class="col-sm-8">
+                                    @if(\Illuminate\Support\Facades\Auth::check())
+                                        <div class="requestQuote"><!--sign up form-->
+                                            <form method="POST" id="requestQuoteLoggedform"
+                                                  action="{{url('/quoterequest/imagelogged')}}"
+                                                  enctype="multipart/form-data">
+                                                {{csrf_field()}}
+                                                <h2>Request Quote</h2>
 
-                                <div style="margin-top: 15px;margin-bottom: 5px;">
-                                    <input type="radio" id="gender" name="gender" value="1"
-                                           style="height:12px;display:inline;width:10%"/>Male &nbsp
-                                    <input type="radio" id="gender" name="gender" value="0"
-                                           style="height:12px;display:inline;width:10%;"/>Female
-                                    <label style="display: block" for="gender" class="error"></label>
+                                                <select id="cake_type" name="cake_type">
+                                                    <option disabled selected>Select a cake type</option>
+                                                    @foreach($categories as $category)
+                                                        <option value="{{$category->type}}">{{$category->type}}</option>
+                                                    @endforeach
+
+                                                </select>
+                                                <select id="served_amount" name="served_amount"
+                                                        style="margin-bottom: 10px">
+                                                    <option disabled selected>Select serving size (Select type
+                                                        of cake first)
+                                                    </option>
+
+                                                </select>
+                                                <input type="file" id="imgc" name="imgc">
+                                                <input type="text" class="span2" id="reqdate"
+                                                       placeholder="Required date" name="reqdate">
+
+                                                <button type="submit" id="signup" class="btn btn-default">Submit
+                                                </button>
+                                            </form>
+                                        </div><!--/sign up form-->
+
+                                    @else
+                                        <div class="requestQuote"><!--sign up form-->
+                                            <form method="POST" id="requestQuoteform"
+                                                  action="{{url('/quoterequest/imagenotlogged')}}" enctype="multipart/form-data">
+                                                {{csrf_field()}}
+                                                <h2>Request Quote</h2>
+
+                                                <input type="text" id=firstname name="firstname"
+                                                       placeholder="First Name"/>
+                                                <input type="text" id=lastname name="lastname"
+                                                       placeholder="Last Name"/>
+
+                                                <input type="text" id="telephone" name="telephone"
+                                                       placeholder="Mobile number"/>
+                                                <input type="email" id="email" name="email"
+                                                       placeholder="Email Address"/>
+                                                <select id="cake_type" name="cake_type">
+                                                    <option disabled selected>Select a cake type</option>
+                                                    @foreach($categories as $category)
+                                                        <option value="{{$category->type}}">{{$category->type}}</option>
+                                                    @endforeach
+
+                                                </select>
+                                                <select id="served_amount" name="served_amount"
+                                                        style="margin-bottom: 10px">
+                                                    <option disabled selected>Select serving size (Select type
+                                                        of cake first)
+                                                    </option>
+
+                                                </select>
+                                                <input type="file" id="imgc" name="imgc">
+                                                <input type="text" class="span2" id="reqdate"
+                                                       placeholder="Required date" name="reqdate">
+
+
+                                                <button type="submit" id="signup" class="btn btn-default">Signup
+                                                </button>
+                                            </form>
+                                        </div><!--/sign up form-->
+                                    @endif
                                 </div>
 
-                                <p style="display:block;margin-bottom: 5px">Birthday</p>
-
-                                <div style="display:block;margin-bottom: 10px">
-                                    <select style="display:inline;width:20%;"
-
-                                            id="months" name="days"></select>
-                                    <select style="display:inline;width:20%;" id="months"
-                                            name="months"></select>
-                                    <select style="display:inline;width:20%;" id="months"
-                                            name="years"></select>
-                                    <label for="months" style="display:block;" class="error"></label>
-                                </div>
-                                <input type="text" id="telephone" name="telephone"
-                                       placeholder="Mobile number"/>
-                                <input type="email" id="email" name="email"
-                                       placeholder="Email Address"/>
-                                <input type="password" id="password" name="password"
-                                       placeholder="Password"/>
-                                <input type="password" id="confirm_password" name="confirm_password"
-                                       placeholder="Confirm Password"/>
-                                <button type="submit" id="signup" class="btn btn-default">Signup
-                                </button>
-                            </form>
-                        </div><!--/sign up form-->
+                            </div><!--/product-information-->
+                        </div><!--product details -->
 
                     </div>
+
                 @endif
-
-
             </div>
-
         </div>
     </section>
 @endsection
 @section('scripts')
 
     <script src="{{asset('js/bootstrap-datepicker.js')}}"></script>
+    <script src="{{asset('js/additional-methods.js')}}"></script>
+
     <script>
 
-$("#signup").on("click",function(){
-   alert($("#reqdate").val());
-});
+        $("#signup").on("click", function () {
+
+        });
         var actualDate = new Date();
         var newDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate() + 5);
         var actualnewDate = new Date(actualDate.getFullYear(), actualDate.getMonth(), actualDate.getDate() + 60);
 
-        jQuery.validator.addMethod("datarange", function(value, element){
-            var d=new Date(value);
-            if (d<actualnewDate && d>newDate) {
+        jQuery.validator.addMethod("datarange", function (value, element) {
+            var d = new Date(value);
+            if (d < actualnewDate && d >= newDate) {
                 return true;
             } else {
                 return false;
-            };
-        },"Please select a date between "+newDate.toDateString()+" and "+actualnewDate.toDateString());
+            }
+            ;
+        }, "Please select a date between " + newDate.toDateString() + " and " + actualnewDate.toDateString());
 
 
         $('#requestQuoteLoggedform').validate({
@@ -219,7 +259,12 @@ $("#signup").on("click",function(){
                 reqdate: {
                     required: true,
                     date: true,
-                   datarange:true
+                    datarange: true
+                },
+                imgc: {
+                    required: true,
+                    accept: "image/*",
+                    extension: "jpeg|jpg|png"
                 }
 
             },
@@ -230,6 +275,10 @@ $("#signup").on("click",function(){
                     required: "Please select a request date",
                     date: "Please enter a valid date",
 
+                },
+                imgc: {
+                    required: "Please upload an image",
+                    accept: "Only allowed images"
                 }
             }
 
@@ -238,20 +287,20 @@ $("#signup").on("click",function(){
 
         $('#requestQuoteform').validate({
             rules: {
-                firstname:{
-                    required:true,
-                    lettersonly:true
-                } ,
+                firstname: {
+                    required: true,
+                    lettersonly: true
+                },
                 lastname: {
-                    required:true,
-                    lettersonly:true
+                    required: true,
+                    lettersonly: true
                 },
                 cake_type: "required",
                 served_amount: "required",
                 reqdate: {
                     required: true,
                     date: true,
-                    datarange:true
+                    datarange: true
                 },
                 telephone: {
                     required: true,
@@ -263,6 +312,11 @@ $("#signup").on("click",function(){
                     required: true,
                     email: true
 
+                },
+                imgc: {
+                    required: true,
+                    accept: "image/*",
+                    extension: "jpeg|jpg|png"
                 }
 
             },
@@ -278,6 +332,10 @@ $("#signup").on("click",function(){
                 telephone: {
                     required: "PLease enter your mobile phone number",
                     minlength: "PLease enter a valid telephone number"
+                },
+                imgc: {
+                    required: "Please upload an image",
+                    accept: "Only allowed images"
                 }
             }
 
